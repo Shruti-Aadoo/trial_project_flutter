@@ -1,0 +1,56 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter build flx --suppress-analytics --target C:\Users\DELL\AndroidStudioProjects\trial_project\lib\main.dart --output-file C:\Users\DELL\AndroidStudioProjects\trial_project\build\app\intermediates\flutter\debug/app.flx --depfile C:\Users\DELL\AndroidStudioProjects\trial_project\build\app\intermediates\flutter\debug/snapshot_blob.bin.d --snapshot C:\Users\DELL\AndroidStudioProjects\trial_project\build\app\intermediates\flutter\debug/snapshot_blob.bin --working-dir C:\Users\DELL\AndroidStudioProjects\trial_project\build\app\intermediates\flutter\debug/flutter_assets
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = 'C:\Users\DELL\AndroidStudioProjects\trial_project\build\app\intermediates\flutter\debug/app.flx' (OS Error: The process cannot access the file because it is being used by another process.
+, errno = 32)
+
+```
+#0      _File.open.<anonymous closure> (dart:io/file_impl.dart:351)
+#1      _rootRunUnary (dart:async/zone.dart:1134)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1031)
+#3      _FutureListener.handleValue (dart:async/future_impl.dart:129)
+#4      _Future._propagateToListeners.handleValueCallback (dart:async/future_impl.dart:633)
+#5      _Future._propagateToListeners (dart:async/future_impl.dart:662)
+#6      _Future._completeWithValue (dart:async/future_impl.dart:477)
+#7      _Future._asyncComplete.<anonymous closure> (dart:async/future_impl.dart:507)
+#8      _rootRun (dart:async/zone.dart:1126)
+#9      _CustomZone.run (dart:async/zone.dart:1023)
+#10     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:949)
+#11     _microtaskLoop (dart:async/schedule_microtask.dart:41)
+#12     _startMicrotaskLoop (dart:async/schedule_microtask.dart:50)
+#13     _runPendingImmediateCallback (dart:isolate-patch/dart:isolate/isolate_patch.dart:113)
+#14     _RawReceivePortImpl._handleMessage (dart:isolate-patch/dart:isolate/isolate_patch.dart:166)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel beta, v0.2.3, on Microsoft Windows [Version 10.0.16299.371], locale en-US)
+    • Flutter version 0.2.3 at C:\Users\DELL\flutter
+    • Framework revision 5a58b36e36 (5 weeks ago), 2018-03-13 13:20:13 -0700
+    • Engine revision e61bb9ac3a
+    • Dart version 2.0.0-dev.35.flutter-290c576264
+
+[!] Android toolchain - develop for Android devices (Android SDK 27.0.3)
+    • Android SDK at C:/Users/DELL/AppData/Local/Android/Sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-27, build-tools 27.0.3
+    • ANDROID_HOME = C:/Users/DELL/AppData/Local/Android/Sdk
+    • Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1024-b02)
+    ! Some Android licenses not accepted.  To resolve this, run: flutter doctor --android-licenses
+
+[✓] Android Studio (version 3.1)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1024-b02)
+
+[✓] Connected devices (1 available)
+    • Android SDK built for x86 • emulator-5554 • android-x86 • Android 6.0 (API 23) (emulator)
+
+! Doctor found issues in 1 category.
+```
