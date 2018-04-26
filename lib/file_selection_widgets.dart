@@ -1,7 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
-import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
+import 'package:path/path.dart';
+import 'package:crypto/crypto.dart';
 
 class fileSelectionRoute extends MaterialPageRoute<String>{
   fileSelectionRoute(File imageFile)
@@ -24,9 +30,25 @@ class fileSelectionDialog extends StatefulWidget{
 }
 
 class fileSelectionDialogState extends State<fileSelectionDialog>{
+  static const platform = const MethodChannel('samples.flutter.io/aws_upload');
 
   Future<String> aws_upload(File imageFile) async {
-      //TODO
+
+    String path = imageFile.absolute.path.toString();
+
+    print("filename"+path.toString());
+    var sendmap = <String,dynamic>{
+      "file": path,
+
+    };
+    print(sendmap);
+    String value;
+    try {
+      value = await platform.invokeMethod('upload_aws',sendmap);
+    }catch(e){
+      print(e);
+    }
+    return value;
   }
 
   @override
@@ -41,28 +63,31 @@ class fileSelectionDialogState extends State<fileSelectionDialog>{
             new Flexible(child:
                 new SingleChildScrollView(
                   child: new Stack(
-                    children: <Widget>[
-                      new Container(alignment: Alignment.topCenter ,child: new Image.file(widget.imageFile,width: 250.0,)),
-                      new Row(
-                          verticalDirection: VerticalDirection.down,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[ new MaterialButton(onPressed: (){},
-                            child: new Text("Done"),
-                            textColor: Colors.white,
-                            highlightColor: Colors.teal,
-                            splashColor: Colors.yellowAccent,
-                            color: Colors.teal,
-                            minWidth: 500.0,
-                            elevation: 20.0,
-                          ),
-                          ]
-                        ),
 
-                    ],
-                  ),
-                )
+                    children: <Widget>[
+                      new Image.file(widget.imageFile,width: 250.0,),
+                      ],
+                      alignment: FractionalOffset.topCenter,
+                    ),
+                  )
+            ),
+            new Container(
+              margin: new EdgeInsets.symmetric(horizontal: 16.0),
+              child: new MaterialButton(onPressed: (){
+                aws_upload(widget.imageFile).then((String response){
+                  if(response == "sucess"){
+                    Navigator.pop(context);
+                  }
+                });
+              },
+                child: new Text("Done"),
+                textColor: Colors.white,
+                highlightColor: Colors.teal,
+                splashColor: Colors.yellowAccent,
+                color: Colors.teal,
+                minWidth: 500.0,
+                elevation: 20.0,
+              )
             )
           ],
         ),

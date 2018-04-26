@@ -3,7 +3,6 @@ description: A new Flutter application.
 
 dependencies:
   circle_indicator: "^0.0.7"
-  aws_client: "^0.1.1"
   image_picker: "^0.4.1"
   path_provider: "^0.4.0"
   barcode_scan: "^0.0.4"

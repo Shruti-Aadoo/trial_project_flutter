@@ -2,30 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:trial_project/welcome_screen.dart';
 
 class LoginScreen extends StatelessWidget{
-  final TextBox1 = new TextField(
+  final TextBox1 = new TextFormField(
     keyboardType: TextInputType.text,
     autofocus: false,
+    style: new TextStyle(color: Colors.white),
+    initialValue: "test",
     decoration: new InputDecoration(
+
         hintText: "Username",
         hintStyle: new TextStyle(
           color: Colors.white,
         ),
-        contentPadding: new EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
+        contentPadding: new EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+
     ),
   );
 
-  final TextBox2 = new TextField(
+  final TextBox2 = new TextFormField(
     keyboardType: TextInputType.text,
     autofocus: false,
+    style: new TextStyle(color: Colors.white),
+    initialValue: "test",
     decoration: new InputDecoration(
-        hintText: "Phone Number",
-        hintStyle: new TextStyle(
-          color: Colors.white,
-        ),
-        contentPadding: new EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
+
+      hintText: "Phone Number",
+      hintStyle: new TextStyle(
+        color: Colors.white,
+      ),
+      contentPadding: new EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+
     ),
   );
-
 
 
   @override
